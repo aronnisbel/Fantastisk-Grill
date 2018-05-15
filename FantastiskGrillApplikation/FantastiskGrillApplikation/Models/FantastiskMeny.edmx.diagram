@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="f09183d9c25f4f59b610e1b0f99b6c84" Name="Diagram1">
+        <EntityTypeShape EntityType="FantastiskDatabasModel.Tbl_HasIngredient" Width="1.5" PointX="3" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="FantastiskDatabasModel.Tbl_Ingredient" Width="1.5" PointX="0.875" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="FantastiskDatabasModel.Tbl_Menu" Width="1.5" PointX="5" PointY="0.875" IsExpanded="true" />
+        <AssociationConnector Association="FantastiskDatabasModel.FK_Tbl_HasIngredient_In_Id" ManuallyRouted="true" >
+          <ConnectorPoint PointX="2.375" PointY="1.9607597005208333" />
+          <ConnectorPoint PointX="2.478125" PointY="1.9607597005208333" />
+          <ConnectorPoint PointX="2.478125" PointY="1.9584517578125" />
+          <ConnectorPoint PointX="3" PointY="1.9584517578125" />
+        </AssociationConnector>
+        <AssociationConnector Association="FantastiskDatabasModel.FK_Tbl_HasIngredient_Me_Id" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

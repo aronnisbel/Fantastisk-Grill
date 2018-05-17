@@ -6,13 +6,9 @@
     <edmx:Diagrams>
       <Diagram DiagramId="f09183d9c25f4f59b610e1b0f99b6c84" Name="Diagram1">
         <EntityTypeShape EntityType="FantastiskDatabasModel.Tbl_HasIngredient" Width="1.5" PointX="3" PointY="0.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="FantastiskDatabasModel.Tbl_Ingredient" Width="1.5" PointX="0.875" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="FantastiskDatabasModel.Tbl_Ingredient" Width="1.5" PointX="0.875" PointY="1.125" IsExpanded="true" />
         <EntityTypeShape EntityType="FantastiskDatabasModel.Tbl_Menu" Width="1.5" PointX="5" PointY="0.875" IsExpanded="true" />
-        <AssociationConnector Association="FantastiskDatabasModel.FK_Tbl_HasIngredient_In_Id" ManuallyRouted="true" >
-          <ConnectorPoint PointX="2.375" PointY="1.9607597005208333" />
-          <ConnectorPoint PointX="2.478125" PointY="1.9607597005208333" />
-          <ConnectorPoint PointX="2.478125" PointY="1.9584517578125" />
-          <ConnectorPoint PointX="3" PointY="1.9584517578125" />
+        <AssociationConnector Association="FantastiskDatabasModel.FK_Tbl_HasIngredient_In_Id" ManuallyRouted="false" >
         </AssociationConnector>
         <AssociationConnector Association="FantastiskDatabasModel.FK_Tbl_HasIngredient_Me_Id" ManuallyRouted="false" />
       </Diagram>

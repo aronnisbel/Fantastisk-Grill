@@ -3,11 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Mvc;
+using FantastiskGrillApplikation.Models;
+
 
 namespace FantastiskGrillApplikation.Controllers
 {
     public class HomeController : Controller
     {
+
+        FantastiskDatabasEntities db = new FantastiskDatabasEntities();
+
         public ActionResult Index()
         {
             return View();
@@ -18,8 +24,13 @@ namespace FantastiskGrillApplikation.Controllers
             
             ViewBag.trans = translateAPI.parseApi("Hej");
 
+            List<Tbl_Menu> menuList = db.Tbl_Menu.ToList();
+
+            ViewBag.menuList = menuList;
+
+            ViewBag.listSize = menuList.Count();
+
             return View();
         }
-
     }
 }

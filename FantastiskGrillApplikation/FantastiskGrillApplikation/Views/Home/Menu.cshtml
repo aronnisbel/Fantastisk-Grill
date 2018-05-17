@@ -3,12 +3,19 @@
 
     <div class="contentContainer">
 
-        <div class="contentItem">
-            <h6>Grill meny special</h6>
-            <h2>Super skrov mål</h2>
-            <h4>50 SEK</h4>
-        </div>
+        @Html.ActionLink("Tillbaka", "Index", "Home", null, new { @class = "btn btn-primary btn-large" })
+        <h3>SVENSKA</h3>
+        <h3>ENGELSKA</h3>
 
+
+        @for (int i = 0; i < ViewBag.listSize; i++)
+        {
+        <div class="contentItem">
+            <h6>@ViewBag.menuList[i].Me_Type</h6>
+            <h2>@ViewBag.menuList[i].Me_Name</h2>
+            <h4>@ViewBag.menuList[i].Me_Price SEK</h4>
+        </div>
+        }
 
     </div>
 

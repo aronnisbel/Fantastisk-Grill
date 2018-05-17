@@ -18,59 +18,32 @@
                 mapTypeId: Microsoft.Maps.MapTypeId.aerial,
                 zoom: 10
             });
-            /*//Add view change events to the map.
-            Microsoft.Maps.Events.addHandler(map, 'viewchangestart', function () { highlight('mapViewChangeStart'); });
-            Microsoft.Maps.Events.addHandler(map, 'viewchange', function () { highlight('mapViewChange'); });
-            Microsoft.Maps.Events.addHandler(map, 'viewchangeend', function () { highlight('mapViewChangEnd'); });
-
-            //Add mouse events to the map.
-            Microsoft.Maps.Events.addHandler(map, 'click', function () { highlight('mapClick'); });
-            Microsoft.Maps.Events.addHandler(map, 'dblclick', function () { highlight('mapDblClick'); });
-            Microsoft.Maps.Events.addHandler(map, 'rightclick', function () { highlight('mapRightClick'); });
-            Microsoft.Maps.Events.addHandler(map, 'mousedown', function () { highlight('mapMousedown'); });
-            Microsoft.Maps.Events.addHandler(map, 'mouseout', function () { highlight('mapMouseout'); });
-            Microsoft.Maps.Events.addHandler(map, 'mouseover', function () { highlight('mapMouseover'); });
-            Microsoft.Maps.Events.addHandler(map, 'mouseup', function () { highlight('mapMouseup'); });
-            Microsoft.Maps.Events.addHandler(map, 'mousewheel', function () { highlight('mapMousewheel'); });
-
-            //Add addition map event handlers
-            Microsoft.Maps.Events.addHandler(map, 'maptypechanged', function () { highlight('maptypechanged'); });
-        }
-
-        function highlight(id) {
-            //Highlight the div to indicate that the event has fired.
-            document.getElementById(id).style.background = 'LightGreen';
-
-            //Remove the highlighting after a second.
-            setTimeout(function () { document.getElementById(id).style.background = 'white'; }, 1000);
-        }*/
 
             var center = map.getCenter();
 
             //Create custom Pushpin
-            var pin = new Microsoft.Maps.Pushpin(center, {
-                /*title: 'Fantastisk Grill',
-                subTitle: 'Umeå Universitet',*/
-                icon: 'images/Grill.png',
+            var pinGrill = new Microsoft.Maps.Pushpin(center, {
+                title: 'Fantastisk Grill',
+                subTitle: 'Umeå Universitet',
+                icon: '/images/Grill.png',
                 anchor: new Microsoft.Maps.Point(12, 23)
             });
-
+        
             //Add the pushpin to the map
-            map.entities.push(pin);
-            //Add mouse events to the pushpin.
-            Microsoft.Maps.Events.addHandler(pushpin, 'click', function () { highlight('pushpinClick'); });
-            Microsoft.Maps.Events.addHandler(pushpin, 'mousedown', function () { highlight('pushpinMousedown'); });
-            Microsoft.Maps.Events.addHandler(pushpin, 'mouseout', function () { highlight('pushpinMouseout'); });
-            Microsoft.Maps.Events.addHandler(pushpin, 'mouseover', function () { highlight('pushpinMouseover'); });
-            Microsoft.Maps.Events.addHandler(pushpin, 'mouseup', function () { highlight('pushpinMouseup'); });
-        }
+            map.entities.push(pinGrill);
 
-        function highlight(id) {
-            //Highlight the mouse event div to indicate that the event has fired.
-            document.getElementById(id).style.background = 'LightGreen';
+            navigator.geolocation.getCurrentPosition(function (position) {
+                var loc = new Microsoft.Maps.Location(
+                    position.coords.latitude,
+                    position.coords.longitude);
 
-            //Remove the highlighting after a second.
-            setTimeout(function () { document.getElementById(id).style.background = 'white'; }, 1000);
+                //Add a pushpin at the user's location.
+                var pinUser = new Microsoft.Maps.Pushpin(loc);
+                map.entities.push(pinUser);
+
+                //Center the map on the user's location.
+                map.setView({ center: loc, zoom: 15 });
+            });
         }
     </script>
 </head>
@@ -78,10 +51,4 @@
 <body onload="GetMap();">
     <h2>Maps</h2>
     <div id="myMap"></div>
-
-    <div id="pushpinClick">click</div>
-    <div id="pushpinMousedown">mousedown</div>
-    <div id="pushpinMouseout">mouseout</div>
-    <div id="pushpinMouseover">mouseover</div>
-    <div id="pushpinMouseup">mouseup</div>
 </body>

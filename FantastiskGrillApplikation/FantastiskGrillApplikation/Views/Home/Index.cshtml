@@ -1,8 +1,54 @@
 ﻿@{
     ViewBag.Title = "Fantastisk GRILL";
 }
+
+<head>
+    <link href="~/Content/Maps.css" rel="stylesheet" />
+    <meta charset="utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+    <script type='text/javascript' src='https://www.bing.com/api/maps/mapcontrol?callback=GetMap&key=AgrcHmxPbZ0_vG53UCbACskQl53A9mp3UCQ32MHb6Y6SxAHcw6RNEs0K4liQTYo3' async defer></script>
+
+    <script type="text/javascript">
+        function GetMap() {
+            var map = new Microsoft.Maps.Map('#myMap', {
+                credentials: 'AgrcHmxPbZ0_vG53UCbACskQl53A9mp3UCQ32MHb6Y6SxAHcw6RNEs0K4liQTYo3',
+                center: new Microsoft.Maps.Location(63.818309, 20.308771),
+                mapTypeId: Microsoft.Maps.MapTypeId.aerial,
+                zoom: 10
+            });
+
+            var center = map.getCenter();
+
+            //Create custom Pushpin
+            var pinGrill = new Microsoft.Maps.Pushpin(center, {
+                title: 'Fantastisk Grill',
+                subTitle: 'Umeå Universitet',
+                icon: '/images/Grill.png',
+                anchor: new Microsoft.Maps.Point(12, 23)
+            });
+
+            //Add the pushpin to the map
+            map.entities.push(pinGrill);
+
+            navigator.geolocation.getCurrentPosition(function (position) {
+                var loc = new Microsoft.Maps.Location(
+                    position.coords.latitude,
+                    position.coords.longitude);
+
+                //Add a pushpin at the user's location.
+                var pinUser = new Microsoft.Maps.Pushpin(loc);
+                map.entities.push(pinUser);
+
+                //Center the map on the user's location.
+                map.setView({ center: loc, zoom: 15 });
+            });
+        }
+    </script>
+</head>
+
 <div class="container" style="background-image:url(/Content/Fantastisk_V3_open.png);">
-    <div class="Sign_left_big textFont">KARTA</div>
+    <div id="myMap"></div>
     <div class="Sign_left_small textFont">25°C</div>
     <img class="Sign_right_big" src="http://thecatapi.com/api/images/get?format=src&type=gif">
     <div class="Sign_right_small textFont">MENY</div>

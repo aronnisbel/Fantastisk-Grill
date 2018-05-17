@@ -10,8 +10,13 @@
     <script type='text/javascript' src='https://www.bing.com/api/maps/mapcontrol?callback=GetMap&key=AgrcHmxPbZ0_vG53UCbACskQl53A9mp3UCQ32MHb6Y6SxAHcw6RNEs0K4liQTYo3' async defer></script>
 
     <script type="text/javascript">
+
+        var map;
+        var loc;
+        var directionsManager;
+
         function GetMap() {
-            var map = new Microsoft.Maps.Map('#myMap', {
+            map = new Microsoft.Maps.Map('#myMap', {
                 credentials: 'AgrcHmxPbZ0_vG53UCbACskQl53A9mp3UCQ32MHb6Y6SxAHcw6RNEs0K4liQTYo3',
                 center: new Microsoft.Maps.Location(63.818309, 20.308771),
                 mapTypeId: Microsoft.Maps.MapTypeId.aerial,
@@ -31,17 +36,43 @@
             //Add the pushpin to the map
             map.entities.push(pinGrill);
 
-            navigator.geolocation.getCurrentPosition(function (position) {
-                var loc = new Microsoft.Maps.Location(
-                    position.coords.latitude,
-                    position.coords.longitude);
+            //Load the spatial math module
+            Microsoft.Maps.loadModule("Microsoft.Maps.SpatialMath", function () {
+                //Request the user's location
+                navigator.geolocation.getCurrentPosition(function (position) {
+                    loc = new Microsoft.Maps.Location(position.coords.latitude, position.coords.longitude);
 
-                //Add a pushpin at the user's location.
-                var pinUser = new Microsoft.Maps.Pushpin(loc);
-                map.entities.push(pinUser);
+                    //Create an accuracy circle
+                    var path = Microsoft.Maps.SpatialMath.getRegularPolygon(loc, position.coords.accuracy, 36, Microsoft.Maps.SpatialMath.Meters);
+                    var poly = new Microsoft.Maps.Polygon(path);
+                    map.entities.push(poly);
 
-                //Center the map on the user's location.
-                map.setView({ center: loc, zoom: 15 });
+                    //Add a pushpin at the user's location.
+                    var pin = new Microsoft.Maps.Pushpin(loc);
+                    map.entities.push(pin);
+
+                    //Center the map on the user's location.
+                    map.setView({ center: loc, zoom: 17 });
+
+                    Microsoft.Maps.loadModule('Microsoft.Maps.Directions', function () {
+
+                        //Create an instance of the directions manager.
+                        directionsManager = new Microsoft.Maps.Directions.DirectionsManager(map);
+
+                        //Create waypoints to route between.
+                        var currentlocation = new Microsoft.Maps.Directions.Waypoint({ location: loc });
+                        directionsManager.addWaypoint(currentlocation);
+
+                        var fantastiskWaypoint = new Microsoft.Maps.Directions.Waypoint({ location: new Microsoft.Maps.Location(63.818309, 20.308771) });
+                        directionsManager.addWaypoint(fantastiskWaypoint);
+
+                        //Specify the element in which the itinerary will be rendered.
+                        directionsManager.setRenderOptions({ itineraryContainer: '#directionsItinerary' });
+
+                        //Calculate directions.
+                        directionsManager.calculateDirections();
+                    });
+                });
             });
         }
     </script>
@@ -49,6 +80,7 @@
 
 <div class="container" style="background-image:url(/Content/Fantastisk_V3_open.png);">
     <div id="myMap"></div>
+    <div id='directionsItinerary'></div>
     <div class="Sign_left_small textFont">25°C</div>
     <img class="Sign_right_big" src="http://thecatapi.com/api/images/get?format=src&type=gif">
     <div class="Sign_right_small textFont">MENY</div>

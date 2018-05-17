@@ -1,0 +1,204 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="FantastiskDatabasModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Tbl_HasIngredient">
+          <Key>
+            <PropertyRef Name="HI_Id" />
+          </Key>
+          <Property Name="HI_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="HI_Me_Id" Type="int" Nullable="false" />
+          <Property Name="HI_In_Id" Type="int" Nullable="false" />
+          <Property Name="HI_Quantity" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tbl_Ingredient">
+          <Key>
+            <PropertyRef Name="In_Id" />
+          </Key>
+          <Property Name="In_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="In_Name" Type="varchar" MaxLength="320" Nullable="false" />
+          <Property Name="In_Color" Type="nvarchar" MaxLength="320" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tbl_Menu">
+          <Key>
+            <PropertyRef Name="Me_Id" />
+          </Key>
+          <Property Name="Me_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Me_Name" Type="varchar" MaxLength="320" />
+          <Property Name="Me_Price" Type="int" Nullable="false" />
+          <Property Name="Me_Type" Type="varchar" MaxLength="320" Nullable="false" />
+          <Property Name="Me_IsSpecialPrice" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Tbl_HasIngredient_In_Id">
+          <End Role="Tbl_Ingredient" Type="Self.Tbl_Ingredient" Multiplicity="1" />
+          <End Role="Tbl_HasIngredient" Type="Self.Tbl_HasIngredient" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Ingredient">
+              <PropertyRef Name="In_Id" />
+            </Principal>
+            <Dependent Role="Tbl_HasIngredient">
+              <PropertyRef Name="HI_In_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_HasIngredient_Me_Id">
+          <End Role="Tbl_Menu" Type="Self.Tbl_Menu" Multiplicity="1" />
+          <End Role="Tbl_HasIngredient" Type="Self.Tbl_HasIngredient" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Menu">
+              <PropertyRef Name="Me_Id" />
+            </Principal>
+            <Dependent Role="Tbl_HasIngredient">
+              <PropertyRef Name="HI_Me_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="FantastiskDatabasModelStoreContainer">
+          <EntitySet Name="Tbl_HasIngredient" EntityType="Self.Tbl_HasIngredient" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tbl_Ingredient" EntityType="Self.Tbl_Ingredient" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tbl_Menu" EntityType="Self.Tbl_Menu" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Tbl_HasIngredient_In_Id" Association="Self.FK_Tbl_HasIngredient_In_Id">
+            <End Role="Tbl_Ingredient" EntitySet="Tbl_Ingredient" />
+            <End Role="Tbl_HasIngredient" EntitySet="Tbl_HasIngredient" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_HasIngredient_Me_Id" Association="Self.FK_Tbl_HasIngredient_Me_Id">
+            <End Role="Tbl_Menu" EntitySet="Tbl_Menu" />
+            <End Role="Tbl_HasIngredient" EntitySet="Tbl_HasIngredient" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="FantastiskDatabasModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Tbl_HasIngredient">
+          <Key>
+            <PropertyRef Name="HI_Id" />
+          </Key>
+          <Property Name="HI_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="HI_Me_Id" Type="Int32" Nullable="false" />
+          <Property Name="HI_In_Id" Type="Int32" Nullable="false" />
+          <Property Name="HI_Quantity" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Tbl_Ingredient" Relationship="Self.FK_Tbl_HasIngredient_In_Id" FromRole="Tbl_HasIngredient" ToRole="Tbl_Ingredient" />
+          <NavigationProperty Name="Tbl_Menu" Relationship="Self.FK_Tbl_HasIngredient_Me_Id" FromRole="Tbl_HasIngredient" ToRole="Tbl_Menu" />
+        </EntityType>
+        <EntityType Name="Tbl_Ingredient">
+          <Key>
+            <PropertyRef Name="In_Id" />
+          </Key>
+          <Property Name="In_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="In_Name" Type="String" MaxLength="320" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="In_Color" Type="String" MaxLength="320" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Tbl_HasIngredient" Relationship="Self.FK_Tbl_HasIngredient_In_Id" FromRole="Tbl_Ingredient" ToRole="Tbl_HasIngredient" />
+        </EntityType>
+        <EntityType Name="Tbl_Menu">
+          <Key>
+            <PropertyRef Name="Me_Id" />
+          </Key>
+          <Property Name="Me_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Me_Name" Type="String" MaxLength="320" FixedLength="false" Unicode="false" />
+          <Property Name="Me_Price" Type="Int32" Nullable="false" />
+          <Property Name="Me_Type" Type="String" MaxLength="320" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Me_IsSpecialPrice" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Tbl_HasIngredient" Relationship="Self.FK_Tbl_HasIngredient_Me_Id" FromRole="Tbl_Menu" ToRole="Tbl_HasIngredient" />
+        </EntityType>
+        <Association Name="FK_Tbl_HasIngredient_In_Id">
+          <End Role="Tbl_Ingredient" Type="Self.Tbl_Ingredient" Multiplicity="1" />
+          <End Role="Tbl_HasIngredient" Type="Self.Tbl_HasIngredient" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Ingredient">
+              <PropertyRef Name="In_Id" />
+            </Principal>
+            <Dependent Role="Tbl_HasIngredient">
+              <PropertyRef Name="HI_In_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_HasIngredient_Me_Id">
+          <End Role="Tbl_Menu" Type="Self.Tbl_Menu" Multiplicity="1" />
+          <End Role="Tbl_HasIngredient" Type="Self.Tbl_HasIngredient" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Menu">
+              <PropertyRef Name="Me_Id" />
+            </Principal>
+            <Dependent Role="Tbl_HasIngredient">
+              <PropertyRef Name="HI_Me_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="FantastiskDatabasEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Tbl_HasIngredient" EntityType="Self.Tbl_HasIngredient" />
+          <EntitySet Name="Tbl_Ingredient" EntityType="Self.Tbl_Ingredient" />
+          <EntitySet Name="Tbl_Menu" EntityType="Self.Tbl_Menu" />
+          <AssociationSet Name="FK_Tbl_HasIngredient_In_Id" Association="Self.FK_Tbl_HasIngredient_In_Id">
+            <End Role="Tbl_Ingredient" EntitySet="Tbl_Ingredient" />
+            <End Role="Tbl_HasIngredient" EntitySet="Tbl_HasIngredient" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_HasIngredient_Me_Id" Association="Self.FK_Tbl_HasIngredient_Me_Id">
+            <End Role="Tbl_Menu" EntitySet="Tbl_Menu" />
+            <End Role="Tbl_HasIngredient" EntitySet="Tbl_HasIngredient" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="FantastiskDatabasModelStoreContainer" CdmEntityContainer="FantastiskDatabasEntities">
+          <EntitySetMapping Name="Tbl_HasIngredient">
+            <EntityTypeMapping TypeName="FantastiskDatabasModel.Tbl_HasIngredient">
+              <MappingFragment StoreEntitySet="Tbl_HasIngredient">
+                <ScalarProperty Name="HI_Id" ColumnName="HI_Id" />
+                <ScalarProperty Name="HI_Me_Id" ColumnName="HI_Me_Id" />
+                <ScalarProperty Name="HI_In_Id" ColumnName="HI_In_Id" />
+                <ScalarProperty Name="HI_Quantity" ColumnName="HI_Quantity" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tbl_Ingredient">
+            <EntityTypeMapping TypeName="FantastiskDatabasModel.Tbl_Ingredient">
+              <MappingFragment StoreEntitySet="Tbl_Ingredient">
+                <ScalarProperty Name="In_Id" ColumnName="In_Id" />
+                <ScalarProperty Name="In_Name" ColumnName="In_Name" />
+                <ScalarProperty Name="In_Color" ColumnName="In_Color" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tbl_Menu">
+            <EntityTypeMapping TypeName="FantastiskDatabasModel.Tbl_Menu">
+              <MappingFragment StoreEntitySet="Tbl_Menu">
+                <ScalarProperty Name="Me_Id" ColumnName="Me_Id" />
+                <ScalarProperty Name="Me_Name" ColumnName="Me_Name" />
+                <ScalarProperty Name="Me_Price" ColumnName="Me_Price" />
+                <ScalarProperty Name="Me_Type" ColumnName="Me_Type" />
+                <ScalarProperty Name="Me_IsSpecialPrice" ColumnName="Me_IsSpecialPrice" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

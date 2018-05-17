@@ -3,26 +3,32 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Mvc;
+using FantastiskGrillApplikation.Models;
+
 
 namespace FantastiskGrillApplikation.Controllers
 {
     public class HomeController : Controller
     {
+
+        FantastiskDatabasEntities db = new FantastiskDatabasEntities();
+
         public ActionResult Index()
         {
             return View();
         }
 
-        public ActionResult About()
+        public ActionResult Menu()
         {
-            ViewBag.Message = "Your application description page.";
+            
+            ViewBag.trans = translateAPI.parseApi("Hej");
 
-            return View();
-        }
+            List<Tbl_Menu> menuList = db.Tbl_Menu.ToList();
 
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
+            ViewBag.menuList = menuList;
+
+            ViewBag.listSize = menuList.Count();
 
             return View();
         }

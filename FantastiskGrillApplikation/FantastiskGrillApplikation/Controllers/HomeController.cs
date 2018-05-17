@@ -13,18 +13,13 @@ namespace FantastiskGrillApplikation.Controllers
             return View();
         }
 
-        public ActionResult About()
+        public ActionResult Menu()
         {
-            ViewBag.Message = "Your application description page.";
+            
+            ViewBag.trans = translateAPI.parseApi("Hej");
 
             return View();
         }
 
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
-        }
     }
 }

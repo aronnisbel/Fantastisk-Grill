@@ -13,6 +13,7 @@
             padding: 0px;
             background-color: #747477;
         }
+
         .container {
             padding-top: 0px;
             padding-bottom: 0px;
@@ -24,11 +25,11 @@
             margin-bottom: 0px;
             text-align: center;
             color: white;
-            position:relative;
-            background-repeat:no-repeat;
-            background-size:contain;
-            width:100vw;
-            height:100vh;
+            position: relative;
+            background-repeat: no-repeat;
+            background-size: contain;
+            width: 100vw;
+            height: 100vh;
         }
 
         .Sign_left_big {
@@ -46,7 +47,10 @@
         .Sign_right_big {
             position: absolute;
             top: 59vh;
-            left: 76vw;
+            left: 75vw;
+            width: 19vw;
+            height: 21vh;
+            object-fit: cover;
         }
 
         .Sign_right_small {
@@ -58,15 +62,14 @@
         .textFont {
             font-family: 'Cooper Std';
             font-size: 30px;
-            letter-spacing:3px;
+            letter-spacing: 3px;
         }
-
-</style>
+    </style>
 
 </head>
 <body>
-@RenderBody()
- @Scripts.Render("~/bundles/jquery")
+    @RenderBody()
+    @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 </body>

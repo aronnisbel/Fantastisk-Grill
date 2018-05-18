@@ -6,7 +6,6 @@ using System.Web.Mvc;
 using System.Web.Mvc;
 using FantastiskGrillApplikation.Models;
 
-
 namespace FantastiskGrillApplikation.Controllers
 {
     public class HomeController : Controller

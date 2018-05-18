@@ -6,7 +6,6 @@ using System.Web.Mvc;
 using System.Web.Mvc;
 using FantastiskGrillApplikation.Models;
 
-
 namespace FantastiskGrillApplikation.Controllers
 {
     public class HomeController : Controller
@@ -16,6 +15,9 @@ namespace FantastiskGrillApplikation.Controllers
 
         public ActionResult Index()
         {
+            WeatherClient wc = new WeatherClient();
+            ViewBag.temp = wc.getData();
+
             return View();
         }
 
@@ -67,8 +69,9 @@ namespace FantastiskGrillApplikation.Controllers
 
             Root r = wc.getData();
 
-            return View();
+            ViewBag.listSize = menuList.Count();
 
+            return View();
         }
     }
 }

@@ -20,10 +20,9 @@ namespace FantastiskGrillApplikation.Models
         {
             wClient = new WebClient();
             wClient.Encoding = System.Text.Encoding.UTF8;
-
         }
 
-        public Root getData()
+        public string getData()
         {
             try
             {
@@ -32,41 +31,36 @@ namespace FantastiskGrillApplikation.Models
                 apiString = apiString.Replace("&gt;", ">");
                 apiString = apiString.Replace("<? xml version = \"1.0\" encoding = \"utf - 8\" ?>", "");
 
-                //87  apiString.ElementAt<char>(87) 38
-
                 string temp = "";
+                string allTemp = "";
 
                 for (int i = 125; i <= 130; i++)
                 {
                     temp = apiString.ElementAt<char>(i).ToString();
                     Debug.WriteLine(temp);
+                    allTemp += temp;
+
                 }
                 Debug.WriteLine("temp: " + temp);
+                Debug.WriteLine("allTemp: " + allTemp);
+
+                allTemp = allTemp.Replace(">", "");
+                allTemp = allTemp.Replace("<", "");
+                allTemp = allTemp.Replace("/", "");
+                Debug.WriteLine("allTemp efter replace: " + allTemp);
 
                 Debug.WriteLine("api string: " + apiString);
-                XmlSerializer serializer = new XmlSerializer(typeof(Root));
-                Debug.WriteLine("Ett");
-                StringReader reader = new StringReader(apiString);
-                Debug.WriteLine("Två");
 
+                return allTemp;
 
-
-                Root rt = (Root)serializer.Deserialize(reader);
-                Debug.WriteLine("Tre");
-                reader.Close();
-
-                return rt;
             }
             catch (Exception e)
             {
                 Debug.WriteLine("ERROR when fetching" + e.Message);
-                return null;
+                return "ERROR!!!!";
             }
         }
 
-
-
     }
-
 
 }

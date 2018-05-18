@@ -51,5 +51,5 @@
     <div id="myMap"></div>
     <div class="Sign_left_small textFont">25°C</div>
     <img class="Sign_right_big" src="http://thecatapi.com/api/images/get?format=src&type=gif">
-    <div class="Sign_right_small textFont">MENY</div>
+    @Html.ActionLink("MENY", "Menu", "Home", null, new { @class = "Sign_right_small textFont" })
 </div>

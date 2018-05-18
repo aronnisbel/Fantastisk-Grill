@@ -177,6 +177,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>FantastiskEF.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\Root.cs" />
     <Compile Include="Models\Tbl_HasIngredient.cs">
       <DependentUpon>FantastiskEF.tt</DependentUpon>
     </Compile>
@@ -186,6 +187,8 @@
     <Compile Include="Models\Tbl_Menu.cs">
       <DependentUpon>FantastiskEF.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\WeatherClient.cs" />
+    <Compile Include="Models\WeatherData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -224,7 +227,7 @@
       <DependentUpon>FantastiskEF.edmx</DependentUpon>
     </Content>
     <None Include="Properties\PublishProfiles\FantastiskGrillApplikationV1 - Web Deploy.pubxml" />
-	<None Include="Scripts\jquery-3.3.1.intellisense.js" />
+    <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.js" />
@@ -251,6 +254,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Maps\Index.cshtml" />
     <Content Include="Views\Home\Menu.cshtml" />
+    <Content Include="Views\Home\getWeatherData.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

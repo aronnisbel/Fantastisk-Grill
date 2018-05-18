@@ -1,0 +1,106 @@
+﻿@model FantastiskGrillApplikation.Models.Root
+
+@{
+    ViewBag.Title = "getWeatherData";
+}
+
+<h2>getWeatherData</h2>
+
+<div>
+    <h4>Root</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Datum)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Datum)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tempmed)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tempmed)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Fukt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Fukt)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tryck)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tryck)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Vindh)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Vindh)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Vindr)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Vindr)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Vindmax)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Vindmax)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Regn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Regn)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Vindord)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Vindord)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Solinstralning)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Solinstralning)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.WindChill)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.WindChill)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

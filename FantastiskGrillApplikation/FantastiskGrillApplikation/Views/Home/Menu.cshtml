@@ -4,18 +4,20 @@
     <div class="contentContainer">
 
         @Html.ActionLink("Tillbaka", "Index", "Home", null, new { @class = "btn btn-primary btn-large" })
-        <h3>SVENSKA</h3>
-        <h3>ENGELSKA</h3>
+        @Html.ActionLink("English", "Menu", "Home", new { lang = "en" }, new { @class = "btn btn-default btn-large" })
+        @Html.ActionLink("Deutsch", "Menu", "Home", new { lang = "de" }, new { @class = "btn btn-default btn-large" })
+        @Html.ActionLink("Romanian", "Menu", "Home", new { lang = "ro" }, new { @class = "btn btn-default btn-large" })
+        @Html.ActionLink("Polish", "Menu", "Home", new { lang = "pl" }, new { @class = "btn btn-default btn-large" })
 
 
         @for (int i = 0; i < ViewBag.listSize; i++)
-        {
+    {
         <div class="contentItem">
             <h6>@ViewBag.menuList[i].Me_Type</h6>
             <h2>@ViewBag.menuList[i].Me_Name</h2>
             <h4>@ViewBag.menuList[i].Me_Price SEK</h4>
         </div>
-        }
+}
 
     </div>
 

@@ -10,7 +10,7 @@ namespace FantastiskGrillApplikation.Controllers
     public class translateAPI
     {
 
-        public static String parseApi(String s)
+        public static String parseApi(String s, string l)
         {
             string key = "trnsl.1.1.20180517T081257Z.4258a6f3c41938ff.2b5426d0e1e8890ad73706be663506cfb4d5aae4";
 
@@ -20,9 +20,9 @@ namespace FantastiskGrillApplikation.Controllers
 
             string translateUrl = "https://translate.yandex.net/api/v1.5/tr.json/translate?key=trnsl.1.1.20180517T081257Z.4258a6f3c41938ff.2b5426d0e1e8890ad73706be663506cfb4d5aae4&text=Hello+my+name+is+bob&lang=en-sv&[format=plain]&[options=1]";
 
-            string text = "What are you doing later this evening?";
+            string text = s;
 
-            string lang = "en-sv";
+            string lang = "sv-"+l;
 
             string url = "https://translate.yandex.net/api/v1.5/tr.json/translate?key=" + key + "&text=" + text + "&lang=" + lang + "&[format=html]&[options=1]";
 

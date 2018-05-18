@@ -19,17 +19,45 @@ namespace FantastiskGrillApplikation.Controllers
             return View();
         }
 
-        public ActionResult Menu()
+        public ActionResult Menu(string lang = "sv")
         {
-            
-            ViewBag.trans = translateAPI.parseApi("Hej");
-
             List<Tbl_Menu> menuList = db.Tbl_Menu.ToList();
 
-            ViewBag.menuList = menuList;
+            if (lang == "sv")
+            {
+                ViewBag.menuList = menuList;
 
-            ViewBag.listSize = menuList.Count();
+                ViewBag.listSize = menuList.Count();
+            }
+            else
+            {
+                List<Tbl_Menu> transList = new List<Tbl_Menu>();
 
+                foreach (Tbl_Menu m in menuList)
+                {
+                    Tbl_Menu transMen = new Tbl_Menu();
+                    transMen.Me_Id = m.Me_Id;
+                    transMen.Me_IsSpecialPrice = m.Me_IsSpecialPrice;
+                    transMen.Me_Name = translateAPI.parseApi(m.Me_Name,lang);
+                    transMen.Me_Price = m.Me_Price;
+                    transMen.Me_Type = m.Me_Type;
+                    transList.Add(transMen);
+                }
+
+                ViewBag.menuList = transList;
+
+                ViewBag.listSize = transList.Count();
+
+            }
+
+            return View();
+        }
+        
+        public ActionResult EnglishMenu()
+        {
+
+            List<Tbl_Menu> menuList = db.Tbl_Menu.ToList();
+           
             return View();
         }
 

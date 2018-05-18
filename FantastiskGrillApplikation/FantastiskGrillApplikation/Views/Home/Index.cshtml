@@ -79,9 +79,9 @@
 </head>
 
 <div class="container" style="background-image:url(/Content/Fantastisk_V3_open.png);">
-    <div id="myMap"></div>
-    <div id='directionsItinerary'></div>
-    <div class="Sign_left_small textFont">25°C</div>
+    <div id="myMap" style="position:relative;width:19vw;height:21vh;"></div>
+    <div class="Sign_left_small textFont">@ViewBag.temp</div>
     <img class="Sign_right_big" src="http://thecatapi.com/api/images/get?format=src&type=gif">
     @Html.ActionLink("MENY", "Menu", "Home", null, new { @class = "Sign_right_small textFont" })
 </div>
+<div id='directionsItinerary'></div>

@@ -16,6 +16,9 @@ namespace FantastiskGrillApplikation.Controllers
 
         public ActionResult Index()
         {
+            WeatherClient wc = new WeatherClient();
+            ViewBag.temp = wc.getData();
+
             return View();
         }
 
@@ -31,16 +34,6 @@ namespace FantastiskGrillApplikation.Controllers
             ViewBag.listSize = menuList.Count();
 
             return View();
-        }
-
-        public ActionResult getWeatherData()
-        {
-            WeatherClient wc = new WeatherClient();
-
-            Root r = wc.getData();
-
-            return View();
-
         }
     }
 }

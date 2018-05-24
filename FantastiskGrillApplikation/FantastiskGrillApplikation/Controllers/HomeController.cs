@@ -55,13 +55,6 @@ namespace FantastiskGrillApplikation.Controllers
             return View();
         }
         
-        public ActionResult EnglishMenu()
-        {
-
-            List<Tbl_Menu> menuList = db.Tbl_Menu.ToList();
-           
-            return View();
-        }
 
         public ActionResult getWeatherData()
         {
